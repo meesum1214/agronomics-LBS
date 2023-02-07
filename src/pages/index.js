@@ -1,8 +1,9 @@
-import { getLands } from '@/layout/API/add'
-import Navbar from '@/layout/globalComponents/Navbar'
-import SelectLand from '@/layout/Home/SelectLand'
+import Footer from '../layout/globalComponents/Footer'
+import Navbar from '../layout/globalComponents/Navbar'
+import SelectLand from '../layout/Home/SelectLand'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { getLands } from '../layout/API/add'
 
 export default function Home() {
 
@@ -25,11 +26,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Navbar />
-
-        <SelectLand lands={lands} setSelectedLand={setSelectedLand} selectedLand={selectedLand} />
-      </main>
+      <Navbar />
+      <SelectLand lands={lands} setSelectedLand={setSelectedLand} selectedLand={selectedLand} />
+      <Footer />
     </>
   )
 }

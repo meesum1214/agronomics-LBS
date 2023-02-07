@@ -1,5 +1,5 @@
-import Btn from "@/layout/globalComponents/Btn"
 import { Divider } from "@mantine/core"
+import Btn from "../../globalComponents/Btn"
 
 export default ({ crop, crop_urdu, varieties_eng, varieties_urdu, onClick}) => {
 

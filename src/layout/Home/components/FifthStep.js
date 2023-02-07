@@ -1,10 +1,10 @@
-import { postCropRecord } from "@/layout/API/add"
-import Btn from "@/layout/globalComponents/Btn"
 import { Divider, ScrollArea } from "@mantine/core"
 import { DatePicker } from "@mantine/dates"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { postCropRecord } from "../../API/add"
+import Btn from "../../globalComponents/Btn"
 // import { postCropRecord } from "../../../../../../../../API/add"
 
 export default ({ selectedLand, managementPractices, location, cropsData, selectedSeedVariety, selectedSowingMethod }) => {

@@ -21,3 +21,33 @@ export const postCheckbox = async (record_id, preparation_id) => {
         },
     })
 }
+
+export const getCropWater = async (id) => {
+    return axios.get(`https://agronomics.pk/legacy_api/get_crop_list_by_crop?crop_record_id=${id}`, {
+        headers: {
+            "Greenage": "5e306c70c4cc37211fae9044c927e1af3ebb3404",
+        }
+    })
+}
+
+export const deleteLand = async (id, userID) => {
+    return API.get(`/landrecord/deleteLand?id=${id}&userID=${userID}`)
+}
+
+export const getLandData = async (latlng) => {
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAS8MyZQtm7vnW1zXTHAZtIy61nMDLbHrg&language=eng&latlng=${latlng}`)
+}
+
+export const addLandRecord = (user_id, name, size, address, province, district, tehsil, location, geometry) => {
+    return API.post('/landrecord/add', {
+        user_id,
+        name,
+        size,
+        address,
+        province,
+        district,
+        tehsil,
+        location,
+        geometry
+    })
+}

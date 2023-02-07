@@ -1,17 +1,20 @@
 import { Modal } from "@mantine/core"
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Btn from "../globalComponents/Btn"
+import LandsModal from "../globalComponents/LandsModal";
 import LandCard from "./components/LandCard";
 import Map from "./components/Map";
 import SelectedLand from "./components/SelectedLand";
 
 export default ({ lands, selectedLand, setSelectedLand }) => {
 
+    const router = useRouter()
     const [opened, setOpened] = useState(false);
-    useEffect(() => {
-        console.log('Selected Land: ', selectedLand)
+    // useEffect(() => {
+        // console.log('Selected Land: ', selectedLand)
         // console.log('suitablecrops: ', JSON.parse(selectedLand?.suitablecrops))
-    }, [selectedLand])
+    // }, [selectedLand])
 
 
     return (
@@ -22,7 +25,7 @@ export default ({ lands, selectedLand, setSelectedLand }) => {
             </div>
 
             <div className={`w-full h-96 bg-white rounded-md shadow-3xl flex flex-col justify-center items-center mt-3`}>
-                {selectedLand ? <SelectedLand selectedLand={selectedLand} />: 'No Land Selected'}
+                {selectedLand ? <SelectedLand selectedLand={selectedLand} /> : 'No Land Selected'}
             </div>
 
             {/* <div className="h-96 bg-white rounded-md shadow-3xl flex justify-center items-center mt-3">
@@ -33,19 +36,12 @@ export default ({ lands, selectedLand, setSelectedLand }) => {
                 <Map selectedLand={selectedLand} />
             </div>
 
+            <div className="flex justify-end my-3">
+                <Btn onClick={() => router.push('/map')}>Add Land</Btn>
+            </div>
 
-
-            <Modal
-                opened={opened}
-                onClose={() => setOpened(false)}
-                title="All Lands"
-            >
-                {
-                    lands.map((land, i) => (
-                        <LandCard key={i} land={land} selectedLand={selectedLand} setSelectedLand={setSelectedLand} />
-                    ))
-                }
-            </Modal>
+            <LandsModal opened={opened} setOpened={setOpened} lands={lands} selectedLand={selectedLand} setSelectedLand={setSelectedLand} />
+            
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { Divider, Stepper } from "@mantine/core"
 import { useState } from "react";
-import Btn from "@/layout/globalComponents/Btn";
-import { postCheckbox } from "@/layout/API/add";
+import Btn from "../../globalComponents/Btn";
+import { postCheckbox } from "../../API/add";
 
 export default ({ list, cropRecordId }) => {
 
@@ -35,21 +35,40 @@ export default ({ list, cropRecordId }) => {
                                                     <Stepper.Step disabled key={i}>
                                                         {
                                                             // active + 1 < crop_land_preparation.length ?
-                                                                checked === 'Checked' ?
-                                                                    setActive(active + 1) : (
-                                                                        <div className="w-full flex flex-col justify-between">
-                                                                            <div>
-                                                                                <div className="text-primary font-bold flex justify-center">Day {day}:</div>
-                                                                                <div className="text-sm w-2/3">{step}</div>
-                                                                                <div className="text-sm text-right w-full flex justify-end">
-                                                                                    <div className="w-2/3">{step_urdu}</div>
-                                                                                </div>
+                                                            checked === 'Checked' ?
+                                                                setActive(active + 1) : (
+                                                                    <div className="w-full flex flex-col justify-between">
+                                                                        <div>
+                                                                            <div className="text-primary font-bold flex justify-center">Day {day}:</div>
+                                                                            <div className="text-sm w-2/3">{step}</div>
+                                                                            <div className="text-sm text-right w-full flex justify-end">
+                                                                                <div className="w-2/3">{step_urdu}</div>
                                                                             </div>
+                                                                        </div>
 
-                                                                            <div className="w-full flex justify-center mt-4">
-                                                                                <div className="w-44">
-                                                                                    {
-                                                                                        active + 1 < crop_land_preparation.length ? (
+                                                                        <div className="w-full flex justify-center mt-4">
+                                                                            <div className="w-44">
+                                                                                {
+                                                                                    active + 1 < crop_land_preparation.length ? (
+                                                                                        <Btn onClick={() => {
+                                                                                            // LoadingAG(true)
+                                                                                            postCheckbox(cropRecordId, `${land_preparation}`)
+                                                                                                .then((res) => {
+                                                                                                    console.log('First Step Response: ', res)
+                                                                                                    setTimeout(() => {
+                                                                                                        nextStep()
+                                                                                                        // LoadingAG(false)
+                                                                                                    }, 1000)
+                                                                                                })
+                                                                                                .catch((err) => {
+                                                                                                    console.log('Error: ', err)
+                                                                                                })
+                                                                                            console.log('cropRecordId', cropRecordId)
+                                                                                            console.log('land_preparation', land_preparation)
+                                                                                        }}>Next</Btn>
+                                                                                    )
+                                                                                        :
+                                                                                        (
                                                                                             <Btn onClick={() => {
                                                                                                 // LoadingAG(true)
                                                                                                 postCheckbox(cropRecordId, `${land_preparation}`)
@@ -63,35 +82,16 @@ export default ({ list, cropRecordId }) => {
                                                                                                     .catch((err) => {
                                                                                                         console.log('Error: ', err)
                                                                                                     })
-                                                                                                console.log('cropRecordId', cropRecordId)
-                                                                                                console.log('land_preparation', land_preparation)
-                                                                                            }}>Next</Btn>
+                                                                                            }}>Done</Btn>
                                                                                         )
-                                                                                            :
-                                                                                            (
-                                                                                                <Btn onClick={() => {
-                                                                                                    // LoadingAG(true)
-                                                                                                    postCheckbox(cropRecordId, `${land_preparation}`)
-                                                                                                        .then((res) => {
-                                                                                                            console.log('First Step Response: ', res)
-                                                                                                            setTimeout(() => {
-                                                                                                                nextStep()
-                                                                                                                // LoadingAG(false)
-                                                                                                            }, 1000)
-                                                                                                        })
-                                                                                                        .catch((err) => {
-                                                                                                            console.log('Error: ', err)
-                                                                                                        })
-                                                                                                }}>Done</Btn>
-                                                                                            )
-                                                                                    }
+                                                                                }
 
-                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    )
-                                                                // :
-                                                                // router.reload()
+                                                                    </div>
+                                                                )
+                                                            // :
+                                                            // router.reload()
                                                         }
                                                     </Stepper.Step>
                                                 )
