@@ -52,7 +52,7 @@ const Setup = ({setLoader}) => {
     return (
         <>
             {Draw && <DrawPoly setDrawn={setDrawn} />}
-            <div className='absolute bottom-6 right-6 z-30 flex'>
+            <div className='absolute bottom-6 right-2 z-30 flex'>
                 {
                     !Draw ?
                         <Btn onClick={() => {

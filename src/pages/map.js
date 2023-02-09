@@ -5,6 +5,7 @@ import Footer from "../layout/globalComponents/Footer"
 import LandsModal from "../layout/globalComponents/LandsModal"
 import Loader from "../layout/globalComponents/Loader"
 import Navbar from "../layout/globalComponents/Navbar"
+import DetailCard from "../layout/Map/DetailCard"
 import MapDisplay from "../layout/Map/MapDisplay"
 
 
@@ -36,6 +37,8 @@ export default () => {
             </div>
 
             <MapDisplay selectedLand={selectedLand} setLoader={setLoader} />
+
+            <DetailCard selected={selectedLand} />
 
             <Footer />
 
