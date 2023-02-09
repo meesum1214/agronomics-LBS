@@ -8,6 +8,7 @@ import CropWater from "./CropWater"
 export default ({ selectedLand }) => {
     const [list, setList] = useState()
 
+    console.log('Selected Land Crop water: ', selectedLand?.crop_records[0]?.id)
     useEffect(() => {
         getCropWater(selectedLand?.crop_records[0]?.id).then((res) => {
             // console.log('Land Preparation List: ', res.data.list)

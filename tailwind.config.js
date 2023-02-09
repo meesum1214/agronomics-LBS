@@ -10,6 +10,10 @@ module.exports = {
         secondaryDark: "#77623E",
         muted: "#D8D8D6",
         bgblacktp: 'rgba(255, 255, 255, 0.69)',
+        facebook: '#3b5998',
+        twitter: '#1da1f2',
+        linkedin: '#0077b5',
+        whatsapp: '#30B744',
       },
       boxShadow: {
         '3xl': '1px 1px 8px 6px rgba(0, 0, 0, 0.05)',

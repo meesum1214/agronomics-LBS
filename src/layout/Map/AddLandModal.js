@@ -5,14 +5,14 @@ import { showNotification } from '@mantine/notifications';
 import area from '@turf/area';
 import { centroid } from '@turf/turf';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MdLocationOn } from 'react-icons/md';
 import { addLandRecord, getLandData } from '../API/add';
 import Btn from '../globalComponents/Btn';
 
 export default ({ feature, closeDraw, setDrawn, stopDrawer, opened, setOpened, setLoader }) => {
     // const user = useUserState()?.data
-    
+    const [user, setUser] = useState(null)
     const acres = (area(feature) / 4046.86).toFixed(2)
     const [name, setname] = useInputState('')
     const geometry = JSON.stringify(feature?.geometry?.coordinates[0])
@@ -25,6 +25,8 @@ export default ({ feature, closeDraw, setDrawn, stopDrawer, opened, setOpened, s
     const router = useRouter()
 
     useEffect(() => {
+        let user = localStorage.getItem('lbs-user-app-web')
+        setUser(JSON.parse(user))
         getLandData(`${feature.geometry.coordinates[0][0][1]},${feature.geometry.coordinates[0][0][0]}`).then(res => {
             console.log(res.data.results)
             const template = res.data.results[0].address_components
@@ -56,11 +58,11 @@ export default ({ feature, closeDraw, setDrawn, stopDrawer, opened, setOpened, s
         console.log('Location: ', JSON.stringify(loc))
         console.log('Geometry: ', geometry)
         console.log('Name: ', name)
-        // console.log('user_id: ', user?.id.toString())
+        console.log('user_id: ', user?.id.toString())
 
         setOpened(false)
 
-        addLandRecord('16', name, `${acres}Acres`, address, province, district, tehsil, JSON.stringify(loc), geometry)
+        addLandRecord(`${user.id}`, name, `${acres}Acres`, address, province, district, tehsil, JSON.stringify(loc), geometry)
             .then(res => {
                 showNotification({
                     message: 'Land Record Added Successfully',

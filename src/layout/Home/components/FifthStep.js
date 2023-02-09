@@ -19,7 +19,7 @@ export default ({ selectedLand, managementPractices, location, cropsData, select
 
   const suitableCrops = JSON.parse(selectedLand?.suitablecrops).filter((e) => e.crop === cropsData.crop)
 
-  const [userId, setUserId] = useState(16)
+  const [userId, setUserId] = useState(null)
   //   useEffect(() => {
   //     let userId = JSON.parse(localStorage.getItem("ag-user-app-web"))
   //     setUserId(userId)
@@ -43,7 +43,8 @@ export default ({ selectedLand, managementPractices, location, cropsData, select
     // console.log('Start Range: ', suitableCrops[0].s_range)
 
     // console.log('Suitable Crops: ', suitableCrops)
-
+    let user = localStorage.getItem('lbs-user-app-web')
+    setUserId(JSON.parse(user).id)
 
     axios.get(`https://agronomics.pk/legacy_api/soil_suitability?lat=${location.lat}&lng=${location.lng}&miles=5000&cropname=${cropsData.crop}`, {
       headers: {

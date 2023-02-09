@@ -28,7 +28,7 @@ export default ({ selected }) => {
 
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-4">
       <div className="flex">
         <h3 className="my-3 font-bold text-primary text-xl">{selected?.crop_records?.[0]?.crop}</h3>
         <div className="flex-1" />

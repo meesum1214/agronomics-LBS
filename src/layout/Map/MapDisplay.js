@@ -14,7 +14,7 @@ export default ({ selectedLand, setLoader }) => {
     const [geocoderresults, setgeocoderresults] = useState([])
 
     return (
-        <div className="sm:h-[80vh] h-[60vh]">
+        <div className="sm:h-[80vh] h-[60vh] sm:w-[90%]">
             <MapGl
                 antialias
                 mapLib={maplibreGl}

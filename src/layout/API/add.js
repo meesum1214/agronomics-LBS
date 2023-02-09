@@ -51,3 +51,7 @@ export const addLandRecord = (user_id, name, size, address, province, district, 
         geometry
     })
 }
+
+export const CheckPhone = async (phone) => {
+    return API.get(`/login/check?phone=${phone}`)
+}

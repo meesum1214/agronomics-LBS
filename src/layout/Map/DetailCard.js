@@ -33,7 +33,7 @@ export default ({ selected }) => {
                                 ref={ref}
                                 shadow="md"
                                 style={{ ...styles }}
-                                className="bg-white relaive z-50  h-[400px] w-screen shadow-heavy p-2"
+                                className="bg-white relaive z-50  h-[400px] w-full shadow-heavy p-2"
                             // ref={clickOutsideRef}
                             >
                                 <div className="justify-center">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Btn from "./Btn";
 import { FaUserAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { HoverCard } from "@mantine/core";
 
 export default () => {
     const router = useRouter();
@@ -20,8 +21,12 @@ export default () => {
                 </div>
 
                 <div className="flex items-center">
-                    <a href="https://play.google.com/store/apps/details?id=com.agronomics.app&hl=en_US&gl=US" target="_blank" className="bg-secondary text-white text-sm font-bold py-1 px-3 rounded-full">Mobile App</a>
-                    <FaUserAlt className="text-secondary ml-2" size={20} />
+                    <a href="https://play.google.com/store/apps/details?id=com.agronomics.app&hl=en_US&gl=US" target="_blank" className="bg-secondary text-white text-sm font-bold py-1 px-3 mr-2 rounded-full">Mobile App</a>
+                    <Btn onClick={() => {
+                        localStorage.removeItem('lbs-user-app-web');
+                        localStorage.removeItem('lbs-token-7878p');
+                        router.reload()
+                    }}>Logout</Btn>
                 </div>
             </div>
         </div>

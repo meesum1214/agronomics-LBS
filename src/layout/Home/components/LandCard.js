@@ -1,10 +1,18 @@
 import { Divider } from "@mantine/core"
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { deleteLand } from "../../API/add";
 
 export default ({ land, selectedLand, setSelectedLand, setOpened }) => {
 
     const router = useRouter()
+    const [userId, setUserId] = useState(null)
+
+    useEffect(() => {
+        let user = localStorage.getItem('lbs-user-app-web')
+        setUserId(JSON.parse(user).id)
+    }, [])
+    
 
     return (
         <div
@@ -19,7 +27,7 @@ export default ({ land, selectedLand, setSelectedLand, setOpened }) => {
 
                     <div className={`'bg-secondary text-xs tracking-wider text-white px-6 py-0.5 rounded-full font-bold cursor-pointer transition-transform flex justify-center border-white border-2 bg-secondary`}
                         onClick={() => {
-                            deleteLand(land.id, 16)
+                            deleteLand(land.id, userId)
                                 .then(res => alert(res.data))
                                 .catch(err => alert(err.message))
                             router.reload()
